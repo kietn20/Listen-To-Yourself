@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+{% block songs %}
+    {% for i in range(length) %}
+        <div style="clear: both; overflow: hidden; padding: 8px 8px 8px 0px; width: 60%; border-radius: 21px 21px 21px 21px; margin-bottom: 10px; background-color: black;" class="shadow-sm mx-auto">
+            <div style='float: left; vertical-align: middle; margin: 45px auto auto 50px;'>
+                <h1 style="color: rgb(30, 215, 96);">#{{ i+1 }}</h1>
+            </div>
+            <iframe style="border-radius: 12px; float: right;" src="https://open.spotify.com/embed/track/{{ topSongs[i][2] }}?utm_source=generator" width="85%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <!-- <h1>helloworld</h1> -->
+            <!-- <div> -->
+                <!-- <iframe style="float: right; border-radius:12px" src="https://open.spotify.com/embed/track/{{ topSongs[i][2] }}?utm_source=generator" width="80%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> -->
+            <!-- </div> -->
+        </div>
+    {% endfor %}
+
+
+
+    <!-- class="bg-dark shadow-sm mx-auto" style="width: 60%; height: 100%; border-radius: 21px 21px 21px 21px;" -->
+
+
+    <!-- {% for i in range(length) %}
+    <div style="border: dotted red; clear: both; overflow: hidden; padding: 10px 10px 10px 10px;">
+        <div style="border: dotted red; float: left; width: 5%;">
+            <h1 style="color: rgb(193, 253, 73); ">{{ i+1 }}</h1>
+        </div>
+        <div style="float: left; border: dotted rgb(83, 64, 192); padding-left: 3%;">
+            <h3 style="border: dotted red; float: left; color: rgb(213, 120, 231);">{{ topSongs[i][0] }}</h3>
+            <br>
+            <h6 style="border: dotted rgb(0, 255, 0); float: left; color: rgb(183, 81, 204); padding-left: 3%;"> {{ topSongs[i][1] }}</h6>
+        </div>
+    </div>
+    {% endfor %} -->
+
+
+
+
+
+    <!-- <ol class="list-group list-group-numbered">
+        {% for i in range(length) %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">
+                    <h1 style="float: left; color: rgb(32, 156, 32); padding-left: 10%;">{{ topSongs[i][0] }}</h1>
+                </div>
+                <h3 style="float: left; color: rgb(32, 156, 32); padding-left: 10%;">{{ topSongs[i][1] }}</h3>
+            </div>
+            </li>
+        {% endfor %}
+    </ol> -->
+<!-- </div> -->
+{% endblock %}
