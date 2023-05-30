@@ -1,0 +1,8 @@
+{% for i in range(length) %}
+    <div style="clear: both; overflow: hidden; padding: 8px 8px 8px 0px; width: 60%; border-radius: 21px 21px 21px 21px; margin-bottom: 10px; background-color: black;" class="shadow-sm mx-auto">
+        <div style='float: left; vertical-align: middle; margin: 45px auto auto 70px;'>
+            <h1 style="color: rgb(30, 215, 96); font-size: 45px;">{{ '  +' }}</h1>
+        </div>
+        <iframe style="border-radius: 12px; float: right;" src="https://open.spotify.com/embed/track/{{ recommendations[i] }}?utm_source=generator" width="85%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+{% endfor %}
