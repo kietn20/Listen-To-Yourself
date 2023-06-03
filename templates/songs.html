@@ -8,7 +8,7 @@
         height: 100%;
         overflow: auto;
         margin: 0;
-        aspect-ratio: 1 / 1, 1920 / auto;
+        aspect-ratio: 1 / 1, 1 / auto;
         background-image: url('/static/iiisometric-2.svg'), url('/static/layered-waves-haikei-2.svg');
         background-position: right, left;
         background-repeat: repeat-y, no-repeat;
@@ -50,7 +50,7 @@
     </div>
     {% for i in range(length) %}
         <div style="clear: both; overflow: hidden; padding: 8px 8px 8px 0px; width: 60%; border-radius: 21px; margin-bottom: 10px; background-color: black;" class="shadow-sm mx-auto">
-            <div style='float: left; margin: 50px auto auto 55px;'>
+            <div style='float: left; margin: 50px auto auto 5%;'>
                 <h1 style="color: rgb(30, 215, 96);">#{{ i+1 }}</h1>
             </div>
             <iframe style="border-radius: 12px; float: right;" src="https://open.spotify.com/embed/track/{{ topSongs[i] }}?utm_source=generator" width="85%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
