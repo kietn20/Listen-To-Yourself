@@ -2,15 +2,14 @@
 
 {% block title %} <title>Your Top Songs</title>{% endblock %}
 {% block head %}
-<!-- <script src="https://unpkg.com/htmx.org@1.9.2" integrity="sha384-L6OqL9pRWyyFU3+/bjdSri+iIphTN/bvYyM37tICVyOJkWZLpP2vGn6VUEXgzg6h" crossorigin="anonymous"></script> -->
 <style>
     body {
         width: 100%;
         height: 100%;
         overflow: auto;
         margin: 0;
-        aspect-ratio: 1920 / auto;
-        background-image: url('static/iiisometric-2.svg'), url('static/layered-waves-haikei-2.svg');
+        aspect-ratio: 1 / 1, 1920 / auto;
+        background-image: url('/static/iiisometric-2.svg'), url('/static/layered-waves-haikei-2.svg');
         background-position: right, left;
         background-repeat: repeat-y, no-repeat;
         background-size: 60% , cover;
@@ -27,22 +26,19 @@
 {% endblock %}
 
 {% block body %}
-
-<!-- rgb(30, 215, 96) original 'My Top Songs' color -->
-<!-- me-md-auto pt-3 px-3 pt-md-5 px-md-5 text-center overflow-auto -->
 <div style='overflow: scroll;' class="me-md-auto pt-3 px-3 pt-md-5 px-md-5 text-center overflow-auto">
     <div class="my-0 p-0">
         <h2 style="font-family: sans-serif; font-size: 400%; text-decoration: underline; font-style: italic; font-weight: bold; color: rgb(19, 189, 78);">My Top Songs</h2>
         <p style="padding-top: 20px;" class="lead">
-            <form action="{{ url_for('getTopSongs') }}" method="POST">
-                <select name='option1' class="form-select-sm" aria-label=".form-select-sm example" required>
+            <form action="/top-songs/" method="GET">
+                <select name='limit' class="form-select-sm" aria-label=".form-select-sm example" required>
                     <option value="" selected disabled># of Songs</option>
                     <option value=5>Five</option>
                     <option value=10>Ten</option>
                     <option value=20>Twenty</option>
                 </select>
                 <label style="font-size: larger; color: rgb(0, 168, 59); padding: 0 8px 0 8px;"> from the past </label>
-                <select name='option2' class="form-select-sm" aria-label=".form-select-sm example" required>
+                <select name='timeRange' class="form-select-sm" aria-label=".form-select-sm example" required>
                     <option value="" selected disabled>Time Period</option>
                     <option value="short_term">30 Days</option>
                     <option value="medium_term">6 Months</option>
@@ -53,17 +49,17 @@
         </p>
     </div>
     {% for i in range(length) %}
-        <div style="clear: both; overflow: hidden; padding: 8px 8px 8px 0px; width: 60%; border-radius: 21px 21px 21px 21px; margin-bottom: 10px; background-color: black;" class="shadow-sm mx-auto">
-            <div style='float: left; vertical-align: middle; margin: 45px auto auto 50px;'>
+        <div style="clear: both; overflow: hidden; padding: 8px 8px 8px 0px; width: 60%; border-radius: 21px; margin-bottom: 10px; background-color: black;" class="shadow-sm mx-auto">
+            <div style='float: left; margin: 50px auto auto 55px;'>
                 <h1 style="color: rgb(30, 215, 96);">#{{ i+1 }}</h1>
             </div>
             <iframe style="border-radius: 12px; float: right;" src="https://open.spotify.com/embed/track/{{ topSongs[i] }}?utm_source=generator" width="85%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     {% endfor %}
-
+    
     {% if showRecommendations %}
     <div class="center-screen">
-        <button hx-get="/clicked" hx-vals='js:{"myVal": {{ length }}, "a": "{{ recommendations }}" }' hx-target="#recommendation-div" hx-swap="innerHTML" style="scale: 120%; border-radius: 30px;" type="button" class="lead btn btn-success">Get Recommendations From These Tracks</button>
+        <button name="/clicked" hx-get="/clicked" hx-vals='{"myVal": "{{ length }}", "a": "{{ recommendations }}", "b": "{{ recommendationsURIs }}", "c": "{{ playlistsNamesString }}", "d": "{{ playlistsIDsString }}", "e": "{{ numberOfPlaylists }}", "limit": "{{ limit }}", "timeRange": "{{ timeRange }}" }' hx-target="#recommendation-div" hx-swap="innerHTML" style="scale: 120%; border-radius: 30px;" type="button" class="lead btn btn-success">Get Recommendations From These Tracks</button>
     </div>
     <div id="recommendation-div"></div>
     {% endif %}

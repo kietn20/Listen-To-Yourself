@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 {% block title %} <title>Home</title>{% endblock %}
+
 {% block head %}
 <style>
     body {
@@ -36,7 +37,7 @@
             <img style="height: 250px;" src="/static/card1.png" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">Get Your Top Songs</h5>
-            <p class="card-text">Curious about your listing habits? Well let's trace back to what you been listening for the past weeks, months, or years!</p>
+            <p class="card-text">Curious about your listening habits? Well let's trace back to what you been listening for the past weeks, months, or years!</p>
             </div>
         </div>
         </div>
@@ -54,51 +55,10 @@
             <img style="height: 250px;" src="/static/card3.jpg" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">Learn About Your Listening Habits</h5>
-            <p class="card-text">Discover who you are based on what you listen too. More analystics to come!</p>
+            <p class="card-text">Discover who you are based on what you listen too. More analytics to come!</p>
             </div>
         </div>
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div style='overflow: scroll;' class="me-md-auto pt-3 px-3 pt-md-5 px-md-5 text-center overflow-auto">
-    <div class="my-0 p-0">
-        <h2 style="font-family: Helvetica; font-size: 400%;">My Top Songs</h2>
-        <p class="lead">
-            <form action="{{ url_for('getTopSongs') }}" method="POST">
-                <select name='option1' class="form-select-sm" aria-label=".form-select-sm example" required>
-                    <option selected disabled># of Songs</option>
-                    <option value=5>Five</option>
-                    <option value=10>Ten</option>
-                    <option value=20>Twenty</option>
-                </select>
-                <label style="font-size: larger;"> from the past </label>
-                <select name='option2' class="form-select-sm" aria-label=".form-select-sm example" required>
-                    <option selected disabled>Time Period</option>
-                    <option value="short_term">30 Days</option>
-                    <option value="medium_term">6 Months</option>
-                    <option value="long_term">Several Years</option>
-                </select>
-                <button style="margin-left: 10px;" type="submit" class="btn btn-success">Fetch</button>
-            </form>
-        </p>
-    </div>
-    {% block songs %}{% endblock %}
-</div> -->
-<!-- {% include 'footer.html' %} -->
 {% endblock %}
