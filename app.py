@@ -19,7 +19,7 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 CLIENT_SIDE_URL = 'http://127.0.0.1'
 PORT = 5000
-# REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
+REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
 REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
 
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?'
@@ -35,22 +35,23 @@ auth_query_parameters = {
     'show_dialog': 'true'
 }
 
-with app.app_context(): 
-    ACCESS_TOKEN = []
+# with app.app_context(): 
+#     ACCESS_TOKEN = []
+ACCESS_TOKEN = []
 
 # cache.clear()
 
-@app.after_request
-def add_header(r):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
-    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    r.headers["Pragma"] = "no-cache"
-    r.headers["Expires"] = "0"
-    r.headers['Cache-Control'] = 'public, max-age=0'
-    return r
+# @app.after_request
+# def add_header(r):
+#     """
+#     Add headers to both force latest IE rendering engine or Chrome Frame,
+#     and also to cache the rendered page for 10 minutes.
+#     """
+#     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+#     r.headers["Pragma"] = "no-cache"
+#     r.headers["Expires"] = "0"
+#     r.headers['Cache-Control'] = 'public, max-age=0'
+#     return r
 
 @app.route("/")
 def login():
