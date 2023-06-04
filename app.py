@@ -11,6 +11,7 @@ load_dotenv()
 
 # cache = Cache(config={'CACHE_TYPE': 'redis'})
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 # app.config["CACHE_TYPE"] = "null"
 # cache.init_app(app)
 
@@ -19,8 +20,8 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 CLIENT_SIDE_URL = 'http://127.0.0.1'
 PORT = 5000
-# REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
-REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
+REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
+# REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
 
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
