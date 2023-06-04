@@ -21,8 +21,8 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 CLIENT_SIDE_URL = 'http://127.0.0.1'
 PORT = 5000
-REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
-# REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
+# REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
+REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
 
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
