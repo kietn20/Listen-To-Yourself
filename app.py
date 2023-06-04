@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request, g
+from flask_caching import Cache
 from dotenv import load_dotenv
 import os
 import requests
@@ -8,6 +9,7 @@ import json
 
 load_dotenv()
 
+# cache = Cache(config=)
 app = Flask(__name__)
 
 CLIENT_ID = os.getenv("CLIENT_ID")
@@ -15,8 +17,8 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 CLIENT_SIDE_URL = 'http://127.0.0.1'
 PORT = 5000
-# REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
-REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
+REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
+# REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
 
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
@@ -33,6 +35,16 @@ auth_query_parameters = {
 
 with app.app_context(): 
     ACCESS_TOKEN = []
+
+@app.after_request
+def add_header(response):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
+    response.headers['Cache-Control'] = 'public, max-age=0'
+    return response
 
 @app.route("/")
 def login():
