@@ -28,7 +28,7 @@ auth_query_parameters = {
     'redirect_uri': REDIRECT_URI,
     'state': 'state',
     'scope': SCOPE,
-    'show_dialog': 'false'
+    'show_dialog': 'true'
 }
 
 with app.app_context(): 
