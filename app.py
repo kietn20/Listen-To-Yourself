@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request
+# from flask_caching import Cache
 from dotenv import load_dotenv
 import os
 import requests
@@ -8,8 +9,10 @@ import json
 
 load_dotenv()
 
-# cache = Cache(config=)
+# cache = Cache(config={'CACHE_TYPE': 'redis'})
 app = Flask(__name__)
+# app.config["CACHE_TYPE"] = "null"
+# cache.init_app(app)
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
@@ -35,15 +38,19 @@ auth_query_parameters = {
 with app.app_context(): 
     ACCESS_TOKEN = []
 
+# cache.clear()
+
 @app.after_request
-def add_header(response):
+def add_header(r):
     """
     Add headers to both force latest IE rendering engine or Chrome Frame,
     and also to cache the rendered page for 10 minutes.
     """
-    response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=0'
-    return response
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
 
 @app.route("/")
 def login():
