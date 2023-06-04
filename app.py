@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request
+from flask import Flask, render_template, redirect, request, session 
 # from flask_caching import Cache
 from dotenv import load_dotenv
 import os
@@ -11,6 +11,8 @@ load_dotenv()
 
 # cache = Cache(config={'CACHE_TYPE': 'redis'})
 app = Flask(__name__)
+app.secret_key = 'frog'
+
 # app.config["CACHE_TYPE"] = "null"
 # cache.init_app(app)
 
@@ -20,7 +22,7 @@ CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 CLIENT_SIDE_URL = 'http://127.0.0.1'
 PORT = 5000
 REDIRECT_URI = f'{CLIENT_SIDE_URL}:{PORT}/callback/'
-REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
+# REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
 
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
@@ -37,7 +39,6 @@ auth_query_parameters = {
 
 # with app.app_context(): 
 #     ACCESS_TOKEN = []
-ACCESS_TOKEN = []
 
 # cache.clear()
 
@@ -55,10 +56,13 @@ ACCESS_TOKEN = []
 
 @app.route("/")
 def login():
+    session.clear()
+    session.permanent = False
     return redirect(SPOTIFY_AUTH_URL + urlencode(auth_query_parameters))
 
 @app.route('/callback/', methods=['GET'])
 def grantAccessToken():
+    session.clear()
     auth_code = request.args['code']
     auth_string = CLIENT_ID + ':' + CLIENT_SECRET
     auth_bytes = auth_string.encode("utf-8")
@@ -76,8 +80,12 @@ def grantAccessToken():
 
     if response.status_code == 200:
         json_result = json.loads(response.content)
-        ACCESS_TOKEN.append(json_result['access_token'])
-        ACCESS_TOKEN.append(json_result['refresh_token'])
+        print(json_result)
+        session['accessToken'] = json_result['access_token']
+        print('ACCESS TOKEN:', session['accessToken'])
+        session['refreshToken'] = json_result['refresh_token']
+        # ACCESS_TOKEN.append(json_result['access_token'])
+        # ACCESS_TOKEN.append(json_result['refresh_token'])
         return redirect('/home')
     else:
         return response.content
@@ -91,7 +99,7 @@ def topSongsPage():
     return render_template('songs.html', length=0, topSongs=[], showRecommendations=False)
 
 @app.route('/top-songs/', methods=["GET"])
-def getTopSongs(ACCESS_TOKEN=ACCESS_TOKEN):
+def getTopSongs():
     if request.method == 'GET':
         limit = int(request.args.get('limit'))
         timeRange = request.args.get('timeRange')
@@ -99,7 +107,7 @@ def getTopSongs(ACCESS_TOKEN=ACCESS_TOKEN):
         response = requests.get(
             API_URL,
             headers={
-                "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+                "Authorization": f"Bearer {session['accessToken']}",
                 "Content-Type": "application/json"
             },
             params={
@@ -142,7 +150,7 @@ def getUserID():
     response = requests.get(
         API_URL,
         headers={
-                "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+                "Authorization": f"Bearer {session['accessToken']}",
                 "Content-Type": "application/json"
         })
     if response.status_code == 200:
@@ -157,7 +165,7 @@ def getPlaylists(user_id,):
     response = requests.get(
         API_URL,
         headers={
-                "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+                "Authorization": f"Bearer {session['accessToken']}",
                 "Content-Type": "application/json"
         },
         params={
@@ -184,7 +192,7 @@ def analytics():
     response = requests.get(
         API_URL,
         headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+            "Authorization": f"Bearer {session['accessToken']}",
             "Content-Type": "application/json"
         },
         params={
@@ -219,7 +227,7 @@ def analytics():
         response = requests.get(
         API_URL,
         headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+            "Authorization": f"Bearer {session['accessToken']}",
             "Content-Type": "application/json"
         },
         params={
@@ -250,7 +258,7 @@ def getRecommendations(limit, seed_tracks=[], seed_genres=[], seed_artists=[]):
     response = requests.get(
         API_URL, 
         headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+            "Authorization": f"Bearer {session['accessToken']}",
             "Content-Type": "application/json"
         },
         params={
@@ -296,7 +304,7 @@ def showRecommendations():
 
 @app.route('/refresh-access-token', methods=['POST'])
 def refreshAccessToken():
-    refresh_token = ACCESS_TOKEN[1]
+    refresh_token = session['refreshToken']
     auth_string = CLIENT_ID + ':' + CLIENT_SECRET
     auth_bytes = auth_string.encode("utf-8")
     auth_base64 = str(base64.b64encode(auth_bytes), "utf-8")
@@ -312,7 +320,7 @@ def refreshAccessToken():
 
     if response.status_code == 200:
         json_result = json.loads(response.content)
-        ACCESS_TOKEN[0] = json_result['access_token']
+        session['accessToken'] = json_result['access_token']
     else:
         return response.content
     
@@ -327,7 +335,7 @@ def add(uri, limit, timeRange):
     response = requests.post(
         API_URL, 
         headers={
-            "Authorization": f"Bearer {ACCESS_TOKEN[0]}",
+            "Authorization": f"Bearer {session['accessToken']}",
             "Content-Type": "application/json"
         },
         params={
