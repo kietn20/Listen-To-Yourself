@@ -10,7 +10,7 @@ import json
 load_dotenv()
 
 app = Flask(__name__)
-
+app.secret_key = os.urandom(16)
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
