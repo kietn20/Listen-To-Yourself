@@ -30,7 +30,7 @@ auth_query_parameters = {
     'redirect_uri': REDIRECT_URI,
     'state': 'state',
     'scope': SCOPE,
-    'show_dialog': 'true'
+    'show_dialog': 'false'
 }
 
 @app.route("/")
