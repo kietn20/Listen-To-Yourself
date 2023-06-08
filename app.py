@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session 
+from flask import Flask, render_template, redirect, request, session, flash
 # from flask_caching import Cache
 from dotenv import load_dotenv
 import os
@@ -9,12 +9,8 @@ import json
 
 load_dotenv()
 
-# cache = Cache(config={'CACHE_TYPE': 'redis'})
 app = Flask(__name__)
-app.secret_key = 'frog'
 
-# app.config["CACHE_TYPE"] = "null"
-# cache.init_app(app)
 
 CLIENT_ID = os.getenv("CLIENT_ID")
 CLIENT_SECRET = os.getenv("CLIENT_SECRET")
@@ -36,23 +32,6 @@ auth_query_parameters = {
     'scope': SCOPE,
     'show_dialog': 'true'
 }
-
-# with app.app_context(): 
-#     ACCESS_TOKEN = []
-
-# cache.clear()
-
-# @app.after_request
-# def add_header(r):
-#     """
-#     Add headers to both force latest IE rendering engine or Chrome Frame,
-#     and also to cache the rendered page for 10 minutes.
-#     """
-#     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-#     r.headers["Pragma"] = "no-cache"
-#     r.headers["Expires"] = "0"
-#     r.headers['Cache-Control'] = 'public, max-age=0'
-#     return r
 
 @app.route("/")
 def login():
@@ -84,22 +63,23 @@ def grantAccessToken():
         session['accessToken'] = json_result['access_token']
         print('ACCESS TOKEN:', session['accessToken'])
         session['refreshToken'] = json_result['refresh_token']
-        # ACCESS_TOKEN.append(json_result['access_token'])
-        # ACCESS_TOKEN.append(json_result['refresh_token'])
         return redirect('/home')
     else:
         return response.content
     
 @app.route('/home')
 def home():
+    flash("Note: This Web Application is currently in DEVELOPMENT MODE which SPOTIFY only allows USERS that are manually added into their user management in order to show users their contents. I will be requesting a 'Quota Extension' from Spotify to be able to make this web application public to everyone.")
     return render_template('home.html')
 
 @app.route('/top-songs')
 def topSongsPage():
+    flash("Note: This Web Application is currently in DEVELOPMENT MODE which SPOTIFY only allows USERS that are manually added into their user management in order to show users their contents. I will be requesting a 'Quota Extension' from Spotify to be able to make this web application public to everyone.")
     return render_template('songs.html', length=0, topSongs=[], showRecommendations=False)
 
 @app.route('/top-songs/', methods=["GET"])
 def getTopSongs():
+    flash("Note: This Web Application is currently in DEVELOPMENT MODE which SPOTIFY only allows USERS that are manually added into their user management in order to show users their contents. I will be requesting a 'Quota Extension' from Spotify to be able to make this web application public to everyone.")
     if request.method == 'GET':
         limit = int(request.args.get('limit'))
         timeRange = request.args.get('timeRange')

@@ -22,11 +22,37 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    .container {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+
+    .centerTop {
+        position: absolute;
+        left: 50%;
+        top: 11%;
+        transform: translate(-50%, -50%);
+    }
 </style>
 {% endblock %}
 
 {% block body %}
-<img class="img-fluid" id="banner" src="/static/banner3.jpg">
+<div>
+    <img class="img-fluid" id="banner" src="/static/banner3.jpg">   
+    <div style='width: 90%; margin: auto; margin-top: 10px; float: top;' class="centerTop">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="alert alert-primary" role="alert">
+                    {% for message in messages %}
+                        <li style='padding:2px; margin-left: 20px;'>{{ message }} <a href='https://forms.gle/a4hnctbUzkL97F7R8' target="_blank">In the meantime, please submit this easy form with your Spotify's email in order to see contents.</a> - Owner</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+</div>
 <div class="background">
     <h1 style="text-align: center; margin: 0px 0px 0px 0px; padding-top: 30px; ">Let's Listen to Yourself</h1>
     <p style="text-align: center;" class="lead">What is your taste in music? Let's find out, and maybe discover new bops along the way.</p>
