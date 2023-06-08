@@ -79,7 +79,6 @@ def topSongsPage():
 
 @app.route('/top-songs/', methods=["GET"])
 def getTopSongs():
-    flash("Note: This Web Application is currently in DEVELOPMENT MODE which SPOTIFY only allows USERS that are manually added into their user management in order to show users their contents. I will be requesting a 'Quota Extension' from Spotify to be able to make this web application public to everyone.")
     if request.method == 'GET':
         limit = int(request.args.get('limit'))
         timeRange = request.args.get('timeRange')
