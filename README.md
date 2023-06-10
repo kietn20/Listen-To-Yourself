@@ -27,7 +27,9 @@ Curious about your listening habits? Well let's trace back to what you been list
 
 Contributors names and contact info
   
-[Kiet Nguyen LinkedIn]([https://twitter.com/dompizzie](https://www.linkedin.com/in/kiet-nguyen-232458276/)) kietnguyen3698@gmail.com
+Kiet Nguyen: 
+* [LinkedIn](https://www.linkedin.com/in/kiet-nguyen-232458276/) 
+* [GMAIL](kietnguyen3698@gmail.com)
 
 ## Version History
 * 0.1
