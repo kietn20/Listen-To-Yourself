@@ -10,7 +10,6 @@ Curious about your listening habits? Well let's trace back to what you been list
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
 * Flask
 * gunicorn
 * python-dotenv
