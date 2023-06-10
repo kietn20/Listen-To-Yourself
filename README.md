@@ -24,8 +24,6 @@ Curious about your listening habits? Well let's trace back to what you been list
 * Include an env file with your spotify's client ID and SECRET
 
 ## Authors
-
-Contributors names and contact info
   
 Kiet Nguyen: 
 * [LinkedIn](https://www.linkedin.com/in/kiet-nguyen-232458276/) 
