@@ -29,7 +29,7 @@ Contributors names and contact info
   
 Kiet Nguyen: 
 * [LinkedIn](https://www.linkedin.com/in/kiet-nguyen-232458276/) 
-* [GMAIL](kietnguyen3698@gmail.com)
+* GMAIL: kietnguyen3698@gmail.com
 
 ## Version History
 * 0.1
