@@ -4,7 +4,7 @@ What is your taste in music? Let's find out, and maybe discover new bops along t
 
 ## Description
 
-Curious about your listening habits? Well let's trace back to what you been listening for the past weeks, months, or years. You can request some recommendations based on the top tracks. You will able to listen and add the recommendations into an exisiting playlist if needed. Furthermore, learn about your current musical moods and how they represent you. Discover who you are based on what you listen to.
+Curious about your listening habits? Well, let's trace back to what you have been listening to for the past weeks, months, or years. You can request some recommendations based on the top tracks. You will be able to listen and add the recommendations to an existing playlist if needed. Furthermore, learn about your current musical moods and how they represent you. Discover who you are based on what you listen to.
 
 ## Getting Started
 
