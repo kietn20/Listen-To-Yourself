@@ -25,7 +25,7 @@ Moods Cover Collage
 ![songspage1](https://github.com/kietn20/Listening-to-Yourself/blob/main/static/docs/images/moodpage1.png?raw=true)
 
 Moods Page
-![songspage1]([https://github.com/kietn20/Listening-to-Yourself/blob/main/static/docs/images/moodpage1.png](https://github.com/kietn20/Listening-to-Yourself/blob/main/static/docs/images/moodpage2.png)?raw=true)
+![songspage1](https://github.com/kietn20/Listening-to-Yourself/blob/main/static/docs/images/moodpage2.png?raw=true)
 
 ## Getting Started
 
