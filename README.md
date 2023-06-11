@@ -24,7 +24,7 @@ Recommendations & Add Song to Playlist Feature
 Moods Cover Collage
 ![songspage1](https://github.com/kietn20/Listening-to-Yourself/blob/main/static/docs/images/moodpage1.png?raw=true)
 
-Moods Page
+Moods Page <br />
 ![songspage1](https://github.com/kietn20/Listening-to-Yourself/blob/main/static/docs/images/moodpage2.png?raw=true)
 
 ## Getting Started
