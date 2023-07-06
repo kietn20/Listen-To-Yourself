@@ -22,7 +22,7 @@ REDIRECT_URI = 'https://listening-to-yourself.onrender.com/callback/'
 
 SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize?'
 SPOTIFY_TOKEN_URL = 'https://accounts.spotify.com/api/token'
-SCOPE = "user-top-read user-read-currently-playing playlist-modify-public playlist-modify-private user-modify-playback-state user-read-private user-read-email user-read-currently-playing playlist-read-private playlist-read-collaborative"
+SCOPE = "user-top-read playlist-modify-public playlist-modify-private user-read-private user-read-email playlist-read-private playlist-read-collaborative"
 
 auth_query_parameters = {
     'client_id': CLIENT_ID,
